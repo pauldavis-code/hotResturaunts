@@ -1,5 +1,7 @@
 const express = require('express');
 
+var guests = require('../data/guests')
+
 var app = express();
 var PORT = 8000
 
@@ -14,5 +16,9 @@ module.exports = function(app) {
 
   app.get('/reserve', function(req, res) {
     res.sendFile(path.join(__dirname + 'reserve.html'))
+  })
+
+  app.listen(PORT, function() {
+    console.log('app listening on PORT ' + PORT)
   })
 }
