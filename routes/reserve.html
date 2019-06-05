@@ -34,8 +34,8 @@
       <h1 class="display-4 text-center">Caliente Restaurant</h1>
       <hr class="my-4">
       <p>Book your seat now, before they're all gone!</p>
-      <a class="btn btn-primary btn-lg" href="/tables" role="button">View Tables</a>
-      <a class="btn btn-danger btn-lg" href="/reserve" role="button">Make Reservation</a>
+      <a class="btn btn-primary btn-lg"  href="/tables" role="button">View Tables</a>
+      <a class="btn btn-danger btn-lg"  href="/reserve" role="button">Make Reservation</a>
     </div>
     <div class="form-group">
       <label for="inputName">Name</label>
@@ -46,14 +46,14 @@
       <input type="name" class="form-control" id="inputNumber" placeholder="Enter Phone # ">
     </div>
     <div class="form-group">
-      <label for="inputName">Email</label>
+      <label for="inputEmail">Email</label>
       <input type="name" class="form-control" id="inputEmail" placeholder="Enter Email">
     </div>
     <div class="form-group">
-      <label for="inputName">Username</label>
+      <label for="inputUnique">Username</label>
       <input type="name" class="form-control" id="inputUnique" placeholder="Waka">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
     </form>
     <br><br>
 
@@ -61,6 +61,24 @@
 
     <a href="#">API Wait List</a>
   </div>
+
+  <script>
+  $("#submit-btn").on("click", function() {
+    var newReservation = {
+      name: $("#inputName").val().trim(),
+      phone: $("#inputNumber").val().trim(),
+      email: $("#inputEmail").val().trim(),
+      id: $("#inputUnique").val().trim()
+    };
+    var current= window.location.origin;
+    $.post(current + "api/tables", newReservation, function(data){
+      $("#inputName").val("");
+      $("#inputNumber").val("");
+      $("inputEmail").val("");
+      $("inputUnique").val("");
+    })
+  })
+  </script>
 </body>
 
 </html>
