@@ -18,8 +18,13 @@ module.exports = function(app) {
   app.get('/reserve', function(req, res) {
     res.sendFile(path.join(__dirname, 'reserve.html'))
   })
-
-  app.listen(PORT, function() {
-    console.log('app listening on PORT ' + PORT)
+  
+  app.get('/api/guests', function(req, res) {
+    return res.json(guests)
   })
+  
+  
+    app.listen(PORT, function() {
+      console.log('app listening on PORT ' + PORT)
+    })
 }
